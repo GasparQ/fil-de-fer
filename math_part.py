@@ -34,6 +34,20 @@ def conv_dec(nbr):
     conv_nbr.append(base[int(nbr % 16)])
     return (conv_nbr)
 
+def de_rotate_mat(points, height, width):
+    c = 0
+    fin_mat = list()
+    while (c < height - 1):
+        l = width - 1
+        line = list()
+        while (l >= 0):
+            line.append(points[l][c])
+            l = l - 1
+        fin_mat.append(line)
+        del (line)
+        c = c + 1
+    return (fin_mat)
+
 def rotate_mat(points, height, width):
     c = width - 1
     fin_mat = list()

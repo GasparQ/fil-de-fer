@@ -43,7 +43,8 @@ def init_mat(size):
     return (mat)
 
 def save_field(mat):
-    with open("fields/created/fld01.txt", "w") as file:
+    mat = ma.de_rotate_mat(mat, 19, 19)
+    with open("fields/created/fld02.txt", "w") as file:
         for l in mat:
             tem = 0
             for c in l:

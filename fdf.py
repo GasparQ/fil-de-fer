@@ -41,14 +41,13 @@ def main():
     l = 0
     a = 0
     all_params = 0
-    print("Charger un terrain : C\nEditer un terrain : E")
     all_params = home.home_choice(all_params)
     disab = all_params[6]
     del all_params[6]
     selec = 0
     while (all_params[0].is_open):
         for event in all_params[0].events:
-            if (type(event) is sf.CloseEvent):
+            if (type(event) is sf.CloseEvent or disab is 5):
                 all_params[0].close()
             if (type(event) is sf.MouseMoveEvent and disab is 0):
                 selec = crt_fld.choose_point(all_params, event.position)
@@ -60,7 +59,6 @@ def main():
             if (type(event) is sf.MouseButtonEvent and disab is 4):
                 if (event.position.x > 0 and event.position.x < 256):
                     if (event.position.y > 0 and event.position.y < 256):
-                        print('a')
                         all_params[1][selec.y][selec.x][1] = colormap[event.position.x, event.position.y].r
                         all_params[1][selec.y][selec.x][2] = colormap[event.position.x, event.position.y].g
                         all_params[1][selec.y][selec.x][3] = colormap[event.position.x, event.position.y].b
@@ -69,28 +67,28 @@ def main():
             if (type(event) is sf.KeyEvent):
                 if (event.pressed):
                     if (event.alt):
-                        if (event.code is sf.Keyboard.UP):
+                        if (event.code is sf.Keyboard.UP and all_params[2].x < 50 and all_params[2].x < 50):
                             if (all_params[5] + 1 < 51):
                                 all_params[5] = all_params[5] + 1
                                 l = 0
-                        if (event.code is sf.Keyboard.DOWN):
+                        if (event.code is sf.Keyboard.DOWN and all_params[2].x < 50 and all_params[2].x < 50):
                             if (all_params[5] - 1 > 6):
                                 all_params[5] = all_params[5] - 1
                                 l = 0
                     else:
-                        if (event.code is sf.Keyboard.UP and disab != 1):
+                        if (event.code is sf.Keyboard.UP and disab != 1  and all_params[2].x < 50 and all_params[2].x < 50):
                             if (all_params[4].y - 10 > 0):
                                 all_params[4].y = all_params[4].y - 10
                                 l = 0
-                        if (event.code is sf.Keyboard.DOWN and disab != 1):
+                        if (event.code is sf.Keyboard.DOWN and disab != 1  and all_params[2].x < 50 and all_params[2].x < 50):
                             if (all_params[4].y + 10 < all_params[3].x - 250):
                                 all_params[4].y = all_params[4].y + 10
                                 l = 0
-                        if (event.code is sf.Keyboard.LEFT):
+                        if (event.code is sf.Keyboard.LEFT and all_params[2].x < 50 and all_params[2].x < 50):
                             if (all_params[4].x - 10 > 0):
                                 all_params[4].x = all_params[4].x - 10
                                 l = 0
-                        if (event.code is sf.Keyboard.RIGHT):
+                        if (event.code is sf.Keyboard.RIGHT and all_params[2].x < 50 and all_params[2].x < 50):
                             if (all_params[4].x + 10 < all_params[3].y):
                                 all_params[4].x = all_params[4].x + 10
                                 l = 0
@@ -121,5 +119,6 @@ def main():
             l = 1
             a = 0
             all_params[0].display()
+    main()
 
 main()

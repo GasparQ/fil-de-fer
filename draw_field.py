@@ -50,8 +50,7 @@ def my_get_nbr(nbr):
     for i in nbr:
         if i is '-':
             sign = sign * (-1)
-        else:
-            size = size + 1
+        size = size + 1
     size = size - 1
     while (size >= 0):
         if (nbr[size] != '-'):
